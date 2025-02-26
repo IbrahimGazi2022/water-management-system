@@ -2,9 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { connectDB } from './DB/connectDB.js';
+import userRouter from './routes/user.routes.js';
 
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -20,6 +20,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/api/user", userRouter);
 app.get('/', (req, res) => {
     res.json({ message: "Backend is Running!" });
 });
